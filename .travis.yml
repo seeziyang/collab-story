@@ -4,7 +4,6 @@ node_js:
 services:
   - mongodb
 before_script:
-  - mongod
   - sleep 15
 script:
   - npm run test
