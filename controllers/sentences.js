@@ -42,7 +42,7 @@ class SentenceController {
   static delete(req, res) {
     const { id } = req.params;
 
-    Sentence.remove({ _id: id }, (err, sentence) => {
+    Sentence.deleteOne({ _id: id }, (err, sentence) => {
       if (err) {
         res.status(404);
         return res.json({ message: `Sentence ${id} could not be deleted`, err });

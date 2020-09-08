@@ -19,6 +19,7 @@ At the root of this folder, run the following:
 - `npm run dev` to start the server
 
 The backend server should be running on http://localhost:8080/, and the APIs are available at http://localhost:8080/api/sentences.
+
 You should see an empty array, i.e. [], when you access http://localhost:8080/api/sentences.
 
 You can test out the API according to the documentation below.

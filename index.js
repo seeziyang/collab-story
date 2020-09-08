@@ -24,3 +24,5 @@ app.get('/', (req, res) => res.send('Welcome to CollabStory!'));
 app.use('/api/sentences', sentencesRouter);
 
 app.listen(port, () => console.log(`CollabStory backend running on port ${port}`));
+
+module.exports = app;
