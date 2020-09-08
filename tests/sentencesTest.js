@@ -86,6 +86,18 @@ describe('Sentences', () => {
           done();
         });
     });
+
+    it('should return 404 for invalid id', done => {
+      chai
+        .request(app)
+        .get('/api/sentences/abc123')
+        .end((err, res) => {
+          res.should.have.status(404);
+          res.body.message.should.be.equals('Sentence abc123 not found');
+
+          done();
+        });
+    });
   });
 
   describe('POST /api/sentences', () => {
@@ -112,13 +124,28 @@ describe('Sentences', () => {
           done();
         });
     });
+
+    it('should return 400 for invalid body', done => {
+      chai
+        .request(app)
+        .post('/api/sentences')
+        .set('content-type', 'application/json')
+        .send({ noText: 'bla', size: 33 })
+        .end((err, res) => {
+          res.should.have.status(400);
+          res.body.should.be.a('object');
+          res.body.message.should.be.equals('New Sentence could not be created');
+
+          done();
+        });
+    });
   });
 
   describe('PUT /api/sentences/:id', () => {
-    it('should put sentence', done => {
-      const sentenceSize = 22;
-      const sentenceStyle = 'Bold';
+    const sentenceSize = 22;
+    const sentenceStyle = 'Bold';
 
+    it('should put sentence', done => {
       chai
         .request(app)
         .put(`/api/sentences/${sentences[2]._id}`)
@@ -133,12 +160,26 @@ describe('Sentences', () => {
           done();
         });
     });
+
+    it('should return 404 for invalid id', done => {
+      chai
+        .request(app)
+        .put(`/api/sentences/abc123`)
+        .set('content-type', 'application/json')
+        .send({ size: sentenceSize, style: sentenceStyle })
+        .end((err, res) => {
+          res.should.have.status(404);
+          res.body.message.should.be.equals('Sentence abc123 not found');
+
+          done();
+        });
+    });
   });
 
   describe('PATCH /api/sentences/:id', () => {
-    it('should patch sentence', done => {
-      const sentenceText = 'Patched text!';
+    const sentenceText = 'Patched text!';
 
+    it('should patch sentence', done => {
       chai
         .request(app)
         .patch(`/api/sentences/${sentences[2]._id}`)
@@ -149,6 +190,20 @@ describe('Sentences', () => {
           res.body.should.be.a('object');
           res.body.data.text.should.be.equals(sentenceText);
           res.body.message.should.be.equals(`Sentence ${sentences[2]._id} successfully updated`);
+
+          done();
+        });
+    });
+
+    it('should return 404 for invalid id', done => {
+      chai
+        .request(app)
+        .patch(`/api/sentences/abc123`)
+        .set('content-type', 'application/json')
+        .send({ text: sentenceText })
+        .end((err, res) => {
+          res.should.have.status(404);
+          res.body.message.should.be.equals('Sentence abc123 not found');
 
           done();
         });
@@ -164,6 +219,20 @@ describe('Sentences', () => {
           res.should.have.status(200);
           res.body.should.be.a('object');
           res.body.message.should.be.equals(`Sentence ${sentences[1]._id} successfully deleted`);
+
+          done();
+        });
+    });
+
+    it('should return 404 for invalid id', done => {
+      chai
+        .request(app)
+        .delete(`/api/sentences/abc123`)
+        .end((err, res) => {
+          res.should.have.status(404);
+          res.body.message.should.be.equals(
+            'Sentence abc123 could not be deleted as it was not found'
+          );
 
           done();
         });

@@ -45,7 +45,10 @@ class SentenceController {
     Sentence.deleteOne({ _id: id }, (err, sentence) => {
       if (err) {
         res.status(404);
-        return res.json({ message: `Sentence ${id} could not be deleted`, err });
+        return res.json({
+          message: `Sentence ${id} could not be deleted as it was not found`,
+          err,
+        });
       }
 
       res.json({ message: `Sentence ${id} successfully deleted`, data: sentence });
