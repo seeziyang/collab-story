@@ -101,4 +101,14 @@ Then, run `npm run test` to run the tests locally.
 
 ## Running the tests via Travis
 
+The tests are automatically triggered and run on Travis with every push to GitHub. You can view the Travis link [here](https://travis-ci.org/github/seeziyang/collab-story).
+
+Inside `.travis.yml`, I specify `mongodb` as one of the services. This will start the mongodb process before running my test script, which is initiated by `npm run test`. I defined the `npm run test` scripts in my `package.json` file. Travis runs `npm install` by default as part of its install step for Node.js. I added a `sleep 15` to `before_script` as suggested in [here](https://docs.travis-ci.com/user/database-setup/#mongodb) to ensure that the database will accept the connections once the test start.
+
+Screenshots showing an example of a Travis build:
+
+![Travis Screenshot 1](screenshots/travis_ss_1.png)
+
+![Travis Screenshot 2](screenshots/travis_ss_2.png)
+
 ## Running the Frontend locally
