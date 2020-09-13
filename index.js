@@ -33,6 +33,8 @@ app.use('/api/sentences', sentencesRouter);
 
 if (NODE_ENV === 'dev') {
   app.listen(port, () => console.log(`CollabStory backend running on port ${port}`));
+
+  module.exports.app = app;
 }
 
 module.exports.handler = serverless(app);
