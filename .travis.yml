@@ -11,3 +11,4 @@ script:
 deploy:
   provider: script
   script: serverless deploy
+  skip_cleanup: true
