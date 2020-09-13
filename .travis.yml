@@ -4,6 +4,10 @@ node_js:
 services:
   - mongodb
 before_script:
+  - npm install -g serverless
   - sleep 15
 script:
   - npm run test
+deploy:
+  provider: script
+  script: serverless deploy
