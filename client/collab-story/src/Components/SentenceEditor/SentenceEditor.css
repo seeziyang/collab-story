@@ -1,0 +1,12 @@
+.sentence-editor-paper {
+  min-width: 800px;
+  margin: 12px;
+  text-align: center;
+  padding: 10px;
+}
+
+.sentence-editor-button {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
