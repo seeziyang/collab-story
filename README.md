@@ -15,7 +15,7 @@ To run the API install, please ensure you have the above installed.
 
 ### Running the API on localhost:8080
 
-At the root of this folder, run the following:
+At the root of this directory, run the following:
 
 - `npm install` to install the dependencies
 - `mongod` to start MongoDB (Please check the MongoDB documentation if you face any error at this step)
@@ -93,6 +93,12 @@ Body parameters:
 Delete the sentence that has the given ID.
 
 ## Accessing the deployed API
+
+The deployed API can be accessed at [https://u7atpbegg3.execute-api.ap-southeast-1.amazonaws.com/dev/](https://u7atpbegg3.execute-api.ap-southeast-1.amazonaws.com/dev/).
+You can refer to the API documentation above to test out the various REST APIs,
+e.g.: `https://u7atpbegg3.execute-api.ap-southeast-1.amazonaws.com/dev/api/sentences`
+
+CollabStory is automatically deployed to AWS Lambda using Travis.
 
 ## Running the tests locally
 
