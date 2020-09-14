@@ -24,6 +24,20 @@ class SentenceCard extends Component {
     };
   }
 
+  getStyledText = () => {
+    const { text = '', font, size, style = '' } = this.props?.sentence ?? {};
+
+    const fontWeight = style.includes('bold') ? 'bold' : 'normal';
+    const fontStyle = style.includes('italic') ? 'italic' : 'normal';
+    const textDecorationLine = style.includes('underline') ? 'underline' : 'none';
+
+    return (
+      <span style={{ fontFamily: font, fontSize: size, fontWeight, fontStyle, textDecorationLine }}>
+        {text}
+      </span>
+    );
+  };
+
   openDeleteDialog = () => this.setState({ isDeleteDialogOpen: true });
 
   closeDeleteDialog = () => this.setState({ isDeleteDialogOpen: false });
@@ -43,8 +57,6 @@ class SentenceCard extends Component {
   };
 
   render() {
-    const { text = '', font, size, style, _id, createdOn } = this.props?.sentence ?? {};
-
     return (
       <Paper
         className="sentence-card-paper"
@@ -54,7 +66,7 @@ class SentenceCard extends Component {
       >
         {!this.state.isEditorOpen && (
           <div className="sentence-card-text">
-            <Typography>{text}</Typography>
+            <Typography>{this.getStyledText()}</Typography>
           </div>
         )}
 
@@ -62,6 +74,7 @@ class SentenceCard extends Component {
           <div className="sentence-card-editor">
             <SentenceEditor
               sentence={this.props.sentence}
+              inputLabel="Edit your sentence"
               doneHandler={this.confirmEdit}
               cancelHandler={this.closeEditor}
             />

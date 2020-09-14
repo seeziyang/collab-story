@@ -3,3 +3,9 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.sentence-editor-style-buttons {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}

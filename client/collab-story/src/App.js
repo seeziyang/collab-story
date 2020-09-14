@@ -34,7 +34,10 @@ class App extends Component {
     this.setState({ sentences: [...this.state.sentences, sentence] });
 
     // Update backend
-    axios.post('/api/sentences', sentence).catch(err => console.log('Error posting sentence', err));
+    axios
+      .post('/api/sentences', sentence)
+      .then(res => (sentence._id = res.data.data._id))
+      .catch(err => console.log('Error posting sentence', err));
   };
 
   deleteSentence = sentence => () => {
