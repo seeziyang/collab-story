@@ -3,6 +3,8 @@ node_js:
   - node
 services:
   - mongodb
+install:
+  - npm run install-all
 before_script:
   - npm install -g serverless
   - sleep 15
@@ -10,5 +12,5 @@ script:
   - npm run test
 deploy:
   provider: script
-  script: cd client/collab-story && npm run build && cd ../.. && serverless deploy
+  script: cd client/collab-story && npm install && npm run build && cd ../.. && serverless deploy
   skip_cleanup: true

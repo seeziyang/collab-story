@@ -8,7 +8,8 @@
     "dev": "NODE_ENV=dev nodemon index",
     "test": "mocha tests/*.js --exit",
     "client": "cd client/collab-story && npm start",
-    "dev-client": "concurrently \"npm run dev\" \"npm run client\""
+    "dev-client": "concurrently \"npm run dev\" \"npm run client\"",
+    "install-all": "npm install && cd client/collab-story && npm install"
   },
   "author": "See Zi Yang",
   "license": "ISC",
