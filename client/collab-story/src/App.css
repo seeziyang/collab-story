@@ -10,7 +10,7 @@
   flex-direction: column-reverse;
   overflow-y: scroll;
   width: 820px;
-  height: 84vh;
+  height: 75vh;
 }
 
 .sentence-editor-paper {

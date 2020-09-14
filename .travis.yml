@@ -10,5 +10,5 @@ script:
   - npm run test
 deploy:
   provider: script
-  script: serverless deploy
+  script: cd client/collab-story && npm run build && cd ../.. && serverless deploy
   skip_cleanup: true

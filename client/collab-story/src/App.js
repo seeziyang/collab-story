@@ -20,7 +20,7 @@ class App extends Component {
 
   fetchSentences = async () => {
     try {
-      const res = await axios.get('/api/sentences');
+      const res = await axios.get('api/sentences');
       const sentences = res.data;
 
       this.setState({ sentences });
@@ -35,7 +35,7 @@ class App extends Component {
 
     // Update backend
     axios
-      .post('/api/sentences', sentence)
+      .post('api/sentences', sentence)
       .then(res => (sentence._id = res.data.data._id))
       .catch(err => console.log('Error posting sentence', err));
   };
@@ -46,7 +46,7 @@ class App extends Component {
 
     // Update backend
     axios
-      .delete(`/api/sentences/${sentence._id}`)
+      .delete(`api/sentences/${sentence._id}`)
       .catch(err => console.log('Error deleting sentence', err));
   };
 
@@ -64,7 +64,7 @@ class App extends Component {
 
     // Update backend
     axios
-      .put(`/api/sentences/${newSentence._id}`, newSentence)
+      .put(`api/sentences/${newSentence._id}`, newSentence)
       .catch(err => console.log('Error updating sentence', err));
   };
 

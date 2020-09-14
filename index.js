@@ -1,4 +1,5 @@
 require('dotenv').config();
+const path = require('path');
 const express = require('express');
 const sentencesRouter = require('./routes/api/sentences');
 const mongoose = require('mongoose');
@@ -27,7 +28,11 @@ const db = mongoose.connection;
 
 db.on('error', err => console.log(err));
 
-app.get('/', (req, res) => res.send('Welcome to CollabStory!'));
+app.use(express.static(path.join(__dirname, 'client', 'collab-story', 'build')));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'collab-story', 'build', 'index.html'));
+});
 
 app.use('/api/sentences', sentencesRouter);
 
