@@ -9,22 +9,28 @@ class SentenceEditor extends Component {
   constructor(props) {
     super(props);
 
+    const { text = '', font, size, style } = this.props?.sentence ?? {};
+
     this.state = {
-      text: '',
+      text,
+      font,
+      size,
+      style,
     };
   }
 
   handleChange = event => this.setState({ text: event.target.value });
 
   handleKeyPress = event => {
-    if (event.key == 'Enter') {
+    if (event.key === 'Enter') {
       this.handleDone();
     }
   };
 
   handleDone = () => {
     const { text, font, size, style } = this.state;
-    const sentence = { text, font, size, style };
+    const _id = this.props.sentence?._id;
+    const sentence = { text, font, size, style, _id };
 
     this.props.doneHandler(sentence);
     this.setState({ text: '' });
@@ -32,7 +38,7 @@ class SentenceEditor extends Component {
 
   render() {
     return (
-      <Paper className="sentence-editor-paper">
+      <>
         <TextField
           id="outlined-multiline-static"
           label="Your New Sentence"
@@ -44,12 +50,18 @@ class SentenceEditor extends Component {
           onKeyPress={this.handleKeyPress}
           variant="outlined"
         />
-        <div className="sentence-editor-button">
+        <div className="sentence-editor-buttons">
+          {this.props.cancelHandler && (
+            <Button style={{ marginRight: '10px' }} onClick={this.props.cancelHandler}>
+              Cancel
+            </Button>
+          )}
+
           <Button variant="contained" color="primary" onClick={this.handleDone}>
             {this.props.doneText ?? 'Submit'}
           </Button>
         </div>
-      </Paper>
+      </>
     );
   }
 }

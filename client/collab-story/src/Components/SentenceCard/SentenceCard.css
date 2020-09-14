@@ -1,6 +1,26 @@
 .sentence-card-paper {
-  min-width: 800px;
-  margin-top: 12px;
+  width: 760px;
+  margin: 12px;
   text-align: center;
   padding: 10px;
+  display: flex;
+  flex-direction: row;
+  color: red;
+}
+
+.sentence-card-text {
+  flex: 1;
+  padding: 4px;
+  align-self: center;
+  justify-self: center;
+}
+
+.sentence-card-button {
+  justify-self: flex-end;
+  align-self: flex-start;
+}
+
+.sentence-card-editor {
+  flex: 1;
+  flex-direction: column;
 }
