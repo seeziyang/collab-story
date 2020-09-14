@@ -9,7 +9,8 @@
     "test": "mocha tests/*.js --exit",
     "client": "cd client/collab-story && npm start",
     "dev-client": "concurrently \"npm run dev\" \"npm run client\"",
-    "install-all": "npm install && cd client/collab-story && npm install"
+    "install-all": "npm install && cd client/collab-story && npm install",
+    "deploy": "cd client/collab-story && npm run build && cd ../.. && serverless deploy"
   },
   "author": "See Zi Yang",
   "license": "ISC",
